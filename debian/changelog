@@ -1,3 +1,10 @@
+zfs-tools (0.6.4) wily; urgency=low
+
+  * improve Debian packaging
+  * fix bugs related to Python 3 migration
+
+ -- Michael Hierweck <michael.hierweck@hostsharing.net>  Fri, 26 Feb 2021 07:25:14 +0000
+
 zfs-tools (0.6.3) wily; urgency=low
 
   * use console script entries points
