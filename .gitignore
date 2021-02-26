@@ -3,3 +3,10 @@
 *egg-info
 dist
 build
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/tmp/
+debian/zfs-shell/
+debian/zfs-tools/
+debian/python3-zfstools/
+.pybuild
