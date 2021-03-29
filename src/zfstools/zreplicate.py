@@ -33,8 +33,10 @@ def main():
         parser.add_option('--identity-file', action='store', dest='identityfile', default=None, type="string", help='path to the SSH identity file (-i) to use (default: as per ssh_config)')
         parser.add_option('--known-hosts-file', action='store', dest='knownhostsfile', default=None, type="string", help='path to the SSH known_hosts file (-o KnownHostsFile) to use (default: as per ssh_config)')
         parser.add_option('--create-destination', action='store_true', dest='create_destination', default=False, help='create destination dataset if missing (default: %default)')
-        parser.add_option('--replication-stream', action='store_true', dest='replication_stream', default=True, help='use zfs send -R, which may destroy destination filesystems/snapshots (default: %default)')
+        parser.add_option('--replication-stream', action='store_true', dest='replication_stream', default=False, help='use zfs send -R, which may destroy destination filesystems/snapshots (default: %default)')
         parser.add_option('--no-replication-stream', action='store_false', dest='replication_stream', help='don\'t use zfs send -R, to protect destination filesystems/snapshots')
+        parser.add_option('--force-rollback', action='store_true', dest='force_rollback', default=False, help='use zfs receive -F, which may destroy destination filesystems/snapshots    (default: %default)')
+        parser.add_option('--no-force-rollback', action='store_false', dest='force_rollback', help='don\'t use zfs receive -F, to protect destination filesystems/snapshots')
         parser.add_option('--lock-source', action='store_true', dest='lock_src', default=False, help='zflock the source dataset (default: %default)')
         parser.add_option('--lock-destination', action='store_true', dest='lock_dst', default=False, help='zflock the destination dataset (default: %default)')
         parser.add_option('--parallel', action='store', dest='parallel', type="int", default=1, metavar='N', help='number of parallel processes (default: %default)')
@@ -134,6 +136,8 @@ def main():
         if opts.verbose:
                 send_opts.append("-v")
                 receive_opts.append("-v")
+        if opts.force_rollback:
+                receive_opts.append("-F")
 
         def transfer(operation):
             op,src,dst,srcs,dsts = operation

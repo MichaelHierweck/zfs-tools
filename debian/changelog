@@ -1,3 +1,18 @@
+zfs-tools (0.7.1) wily; urgency=low
+
+  * improve security by changing the default of "zfs send -R" option
+    (replication stream) (off by default)
+  * improve security by making the "zfs receive -F" option (force rollback)
+    configurable (off by default)
+
+ -- Michael Hierweck <michael.hierweck@hostsharing.net>  Mon, 29 Mar 2021 14:30:02 +000
+
+zfs-tools (0.7.0) wily; urgency=low
+
+  * separate zfs-backup into separate Debian package
+
+ -- Michael Hierweck <michael.hierweck@hostsharing.net>  Mon, 29 Mar 2021 14:30:02 +000
+
 zfs-tools (0.6.4) wily; urgency=low
 
   * improve Debian packaging

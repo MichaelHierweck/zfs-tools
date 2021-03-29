@@ -141,7 +141,7 @@ class ZFSConnection:
             barprg = sndprg
 
         try:
-                        rcvprg = dst_conn.receive(d,pipe=barprg.stdout,opts=["-Fu"]+receive_opts,bufsize=bufsize,compression=compression, lockdataset=lockdstdataset)
+                        rcvprg = dst_conn.receive(d,pipe=barprg.stdout,opts=["-u"]+receive_opts,bufsize=bufsize,compression=compression, lockdataset=lockdstdataset)
                         rcvprg_supervisor = Thread(target=lambda: queue_of_killables.put((rcvprg, rcvprg.wait())))
                         rcvprg_supervisor.start()
                         barprg.stdout.close()

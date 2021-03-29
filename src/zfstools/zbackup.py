@@ -109,7 +109,7 @@ def replicate(filesystem, destination, options):
         for tier in options.delete_tiers.split(','):
             snapshot(tier, filesystem, False, 0, options)
     # replicate
-    zreplicate_command = ['zreplicate', '--create-destination', '--no-replication-stream']
+    zreplicate_command = ['zreplicate', '--create-destination', '--no-replication-stream', '--force-rollback']
     if options.verbose:
         zreplicate_command += ['-v']
     if options.dryrun:
